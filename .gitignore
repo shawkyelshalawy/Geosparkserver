@@ -1,0 +1,4 @@
+node_modules/
+/.env
+.idea/
+src/datastore/sql/geospark.sqlite

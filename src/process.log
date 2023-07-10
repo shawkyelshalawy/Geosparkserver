@@ -1,0 +1,8 @@
+{"level":30,"time":1688949266025,"msg":"Listening on port 3001 in production environment"}
+{"level":30,"time":1688949276215,"method":"POST","path":"/courses","body":{"title":"Geology course ","description":"Comprehensive guide for the fundmentals of Geology"}}
+{"level":30,"time":1688949285354,"method":"GET","path":"/Allusers"}
+{"level":30,"time":1688949293641,"method":"POST","path":"/signup","body":{"email":"fariedshawky@gmail.com","password":"[Redacted]","firstName":"shawkita","lastName":"faried"}}
+{"level":30,"time":1688949299010,"method":"POST","path":"/login","body":{"email":"faried@gmail.com","password":"[Redacted]"}}
+{"level":30,"time":1688949305032,"method":"GET","path":"/Allusers"}
+{"level":30,"time":1688949324515,"method":"GET","path":"/courses/c7fa6e63-14f1-4006-a621-7df115382c7d"}
+{"level":30,"time":1688949337577,"method":"DELETE","path":"/courses/c7fa6e63-14f1-4006-a621-7df115382c7d"}
