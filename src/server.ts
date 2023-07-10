@@ -31,7 +31,9 @@ import { courseRouter } from './routes/courseRoutes';
     app.use(loggerMiddleware);
   }
   app.use(cookieParser());
-
+  app.get('/healthz', (req, res) => {
+    res.send({ status: '✌️ ' });
+  });
   app.use(userRouter, courseRouter);
   dotenv.config();
   app.use(errHandler);
