@@ -19,11 +19,12 @@ import { courseRouter } from './routes/courseRoutes';
   app.use(express.urlencoded({ extended: false }));
 
   const corsOpts = {
-    origin: '*',
+    origin: 'http://localhost:3000',
 
-    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
 
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type', 'credentials'],
+    credentials: true,
   };
   app.use(cors(corsOpts));
   if (logRequests) {

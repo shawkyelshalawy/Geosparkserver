@@ -19,7 +19,7 @@ export const createSendToken = (user: User, statusCode: number, res: any) => {
         parseInt(process.env.JWT_COOKIE_EXPIRES_IN || '0') * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
-    secure: true,
+    secure: false,
     sameSite: 'none',
   };
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
