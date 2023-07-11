@@ -62,6 +62,10 @@ export interface GetCourseRequest {
 }
 export type GetCourseResponse = Pick<Course, 'title'>;
 
+export interface ListCoursesRequest {}
+export type ListCoursesResponse = {
+  courses: Pick<Course, 'id' | 'title' | 'description'>[];
+};
 export interface DeleteCourseRequest {
   id: string;
 }

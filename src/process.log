@@ -1,2 +1,4 @@
-{"level":30,"time":1689081265134,"msg":"Listening on port 3001 in production environment"}
-{"level":30,"time":1689081309375,"method":"POST","path":"/login","body":{"email":"fariedshawky@gmail.com","password":"[Redacted]"}}
+{"level":30,"time":1689084130888,"msg":"Listening on port 3001 in production environment"}
+{"level":30,"time":1689084164905,"method":"GET","path":"/courses"}
+{"level":30,"time":1689084174953,"method":"POST","path":"/courses","body":{"title":"Geology2 course ","description":"Comprehensive guide for the fundmentals of Geology"}}
+{"level":30,"time":1689084178934,"method":"GET","path":"/courses"}

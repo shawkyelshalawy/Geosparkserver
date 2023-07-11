@@ -7,6 +7,8 @@ import {
   DeleteCourseResponse,
   GetCourseRequest,
   GetCourseResponse,
+  ListCoursesRequest,
+  ListCoursesResponse,
 } from '../shared/api';
 import { ERRORS } from '../shared/errors';
 import { Course } from '../shared/types';
@@ -40,6 +42,20 @@ export const getCourseHandler: ExpressHandlerWithParams<
     return res.status(404).send({ error: ERRORS.Course_Not_Found });
   }
   return res.status(200).send(course);
+};
+
+export const getAllCoursesHandler: ExpressHandler<
+  ListCoursesRequest,
+  ListCoursesResponse
+> = async (req, res) => {
+  const courses = await db.getAllCourses();
+  return res.status(200).send({
+    courses: courses.map((course) => ({
+      id: course.id,
+      title: course.title,
+      description: course.description,
+    })),
+  });
 };
 
 export const deleteCourseHandler: ExpressHandlerWithParams<

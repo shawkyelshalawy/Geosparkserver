@@ -66,6 +66,9 @@ export class SqlDataStore implements Datastore {
   getCourseById(id: string): Promise<Course | undefined> {
     return this.db.get<Course>(`SELECT * FROM courses WHERE id = ?`, id);
   }
+  getAllCourses(): Promise<Course[]> {
+    return this.db.all<Course[]>(`SELECT * FROM courses`);
+  }
   async DeleteCourse(id: string): Promise<void> {
     await this.db.run(`DELETE FROM courses WHERE id = ?`, id);
   }
