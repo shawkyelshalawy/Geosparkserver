@@ -19,7 +19,7 @@ import { courseRouter } from './routes/courseRoutes';
   app.use(express.urlencoded({ extended: false }));
 
   const corsOpts = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', "https://geospark-frontend.vercel.app"],
 
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
 
