@@ -1,6 +1,2 @@
-{"level":30,"time":1688950925978,"msg":"Listening on port 3001 in production environment"}
-{"level":30,"time":1688950935848,"method":"POST","path":"/login","body":{"email":"fariedshawky@gmail.com","password":"[Redacted]"}}
-{"level":30,"time":1688950941406,"method":"GET","path":"/logout"}
-{"level":30,"time":1688950948883,"method":"POST","path":"/login","body":{"email":"fariedshawky@gmail.com","password":"[Redacted]"}}
-{"level":30,"time":1688951017441,"method":"POST","path":"/signup","body":{"email":"fariedhawky@gmail.com","password":"[Redacted]","firstName":"shawkita","lastName":"faried"}}
-{"level":30,"time":1688951029453,"method":"POST","path":"/login","body":{"email":"fariedhawky@gmail.com","password":"[Redacted]"}}
+{"level":30,"time":1689081265134,"msg":"Listening on port 3001 in production environment"}
+{"level":30,"time":1689081309375,"method":"POST","path":"/login","body":{"email":"fariedshawky@gmail.com","password":"[Redacted]"}}

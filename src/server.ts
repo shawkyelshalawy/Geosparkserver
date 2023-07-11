@@ -18,9 +18,19 @@ import { courseRouter } from './routes/courseRoutes';
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
+  const whitelist = [
+    'http://localhost:3000',
+    'https://geospark-frontend.vercel.app/',
+  ];
   const corsOpts = {
-    origin: 'http://localhost:3000',
-
+    origin: (origin: any, callback: any) => {
+      if (whitelist.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        LOGGER.error(`Origin ${origin} not allowed by CORS`);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
 
     allowedHeaders: ['Content-Type', 'credentials'],
