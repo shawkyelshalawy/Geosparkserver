@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { Course, User } from './types';
+import { Chapter, Course, User } from './types';
 
 export type SignUpRequest = Pick<
   User,
@@ -70,5 +70,33 @@ export interface DeleteCourseRequest {
   id: string;
 }
 export type DeleteCourseResponse = {
+  message: string;
+};
+export type CreateChapterRequest = Pick<
+  Chapter,
+  'id' | 'title' | 'description' | 'courseId'
+>;
+export type CreateChapterResponse = Pick<
+  Chapter,
+  'id' | 'title' | 'description'
+>;
+
+export interface GetChapterRequest {
+  id: string;
+}
+export type GetChapterResponse = Pick<Chapter, 'title'>;
+
+export type listChapterRequest = {
+  courseId: string;
+};
+
+export type listChapterResponse = {
+  chapters: Pick<Chapter, 'id' | 'title' | 'description'>[];
+};
+
+export interface DeleteChapterRequest {
+  id: string;
+}
+export type DeleteChapterResponse = {
   message: string;
 };

@@ -14,3 +14,10 @@ export interface Course {
   description: string;
   userId: string;
 }
+
+export interface Chapter {
+  id: string;
+  title: string;
+  description: string;
+  courseId: string;
+}

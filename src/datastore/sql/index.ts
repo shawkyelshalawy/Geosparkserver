@@ -1,4 +1,4 @@
-import { Course, User } from '../../shared/types';
+import { Chapter, Course, User } from '../../shared/types';
 import path from 'path';
 import { Database, open as sqliteOpen } from 'sqlite';
 import sqlite3 from 'sqlite3';
@@ -72,39 +72,25 @@ export class SqlDataStore implements Datastore {
   async DeleteCourse(id: string): Promise<void> {
     await this.db.run(`DELETE FROM courses WHERE id = ?`, id);
   }
-}
-/*
-async createPost(post: Post): Promise<void> {
+  async CreateChapter(chapter: Chapter): Promise<void> {
     await this.db.run(
-      'INSERT INTO posts (id, title, url, postedAt, userId) VALUES (?,?,?,?,?)',
-      post.id,
-      post.title,
-      post.url,
-      post.postedAt,
-      post.userId
+      'INSERT INTO chapters (id, title, description, courseId) VALUES (?,?,?,?)',
+      chapter.id,
+      chapter.title,
+      chapter.description,
+      chapter.courseId
     );
   }
-  public create: ExpressHandler<CreatePostRequest, CreatePostResponse> = async (req, res) => {
-    // TODO: better error messages
-    if (!req.body.title || !req.body.url) {
-      return res.sendStatus(400);
-    }
-
-    const existing = await this.db.getPostByUrl(req.body.url);
-    if (existing) {
-      // A post with this url already exists
-      return res.status(400).send({ error: ERRORS.DUPLICATE_URL });
-    }
-
-    const post: Post = {
-      id: crypto.randomUUID(),
-      postedAt: Date.now(),
-      title: req.body.title,
-      url: req.body.url,
-      userId: res.locals.userId,
-    };
-    await this.db.createPost(post);
-    return res.sendStatus(200);
-  };
-
-*/
+  async getChapterById(id: string): Promise<Chapter | undefined> {
+    return this.db.get<Chapter>(`SELECT * FROM chapters WHERE id = ?`, id);
+  }
+  getChaptersByCourseId(courseId: string): Promise<Chapter[]> {
+    return this.db.all<Chapter[]>(
+      `SELECT * FROM chapters WHERE courseId = ?`,
+      courseId
+    );
+  }
+  async DeleteChapter(id: string): Promise<void> {
+    await this.db.run(`DELETE FROM chapters WHERE id = ?`, id);
+  }
+}

@@ -56,7 +56,7 @@ export const userIsAdmin = async (req: any, res: any, next: any) => {
   if (req.user.isAdmin) {
     next();
   } else {
-    return res.status(401).send({ error: 'ERRORS.NOT_ADMIN' });
+    return res.status(401).send({ error: ERRORS.NOT_ADMIN });
   }
 };
 export const signUpHandler: ExpressHandler<

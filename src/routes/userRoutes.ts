@@ -13,7 +13,6 @@ import {
   getCurrentUser,
   listUsersHandler,
 } from '../handlers/userHandler';
-import { createCourseHandler } from '../handlers/courseHandler';
 import { protect } from '../middleware/authMiddleware';
 
 export const userRouter = Router();
@@ -22,11 +21,17 @@ userRouter.post('/login', asyncHandler(signInHandler));
 userRouter.get('/logout', asyncHandler(signOutHandler));
 userRouter.route('/Currentuser').get(asyncHandler(getCurrentUser));
 
-userRouter.use(asyncHandler(protect)).use(asyncHandler(userIsAdmin));
+userRouter
+  .route('/Allusers')
+  .get(protect, userIsAdmin, asyncHandler(listUsersHandler));
 
-userRouter.route('/Allusers').get(asyncHandler(listUsersHandler));
+userRouter
+  .route('/activate/:id')
+  .patch(protect, userIsAdmin, asyncHandler(activateUserHandler));
 
-userRouter.route('/activate/:id').patch(asyncHandler(activateUserHandler));
-
-userRouter.route('/deactivate/:id').patch(asyncHandler(deactivateUserHandler));
-userRouter.route('/deleteUser/:id').delete(asyncHandler(deleteUserHandler));
+userRouter
+  .route('/deactivate/:id')
+  .patch(protect, userIsAdmin, asyncHandler(deactivateUserHandler));
+userRouter
+  .route('/deleteUser/:id')
+  .delete(protect, userIsAdmin, asyncHandler(deleteUserHandler));

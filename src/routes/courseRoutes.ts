@@ -6,13 +6,14 @@ import {
   getAllCoursesHandler,
   getCourseHandler,
 } from '../handlers/courseHandler';
-import { enforceJwtMiddleware, protect } from '../middleware/authMiddleware';
+import { protect } from '../middleware/authMiddleware';
 import { userIsAdmin } from '../handlers/authHandler';
 export const courseRouter = Router();
-courseRouter.use(asyncHandler(protect)).use(asyncHandler(enforceJwtMiddleware));
-courseRouter.route('/courses/:id').get(asyncHandler(getCourseHandler));
 courseRouter.route('/courses').get(asyncHandler(getAllCoursesHandler));
-courseRouter.use(asyncHandler(userIsAdmin));
-courseRouter.route('/courses').post(asyncHandler(createCourseHandler));
-
-courseRouter.route('/courses/:id').delete(asyncHandler(deleteCourseHandler));
+courseRouter.route('/courses/:id').get(asyncHandler(getCourseHandler));
+courseRouter
+  .route('/courses')
+  .post(protect, userIsAdmin, asyncHandler(createCourseHandler));
+courseRouter
+  .route('/courses/:id')
+  .delete(protect, userIsAdmin, asyncHandler(deleteCourseHandler));

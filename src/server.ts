@@ -8,6 +8,7 @@ import { initDb } from './datastore';
 import { errHandler } from './middleware/errorMiddleware';
 import { userRouter } from './routes/userRoutes';
 import { courseRouter } from './routes/courseRoutes';
+import { chapterRouter } from './routes/chapterRoutes';
 (async (logRequests = true) => {
   await initDb();
 
@@ -24,14 +25,6 @@ import { courseRouter } from './routes/courseRoutes';
   ];
   const corsOpts = {
     origin: whitelist,
-    // (origin: any, callback: any) => {
-    //   if (whitelist.indexOf(origin) !== -1 || !origin) {
-    //     callback(null, true);
-    //   } else {
-    //     LOGGER.error(`Origin ${origin} not allowed by CORS`);
-    //     callback(new Error('Not allowed by CORS'));
-    //   }
-    // },
     methods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH'],
 
     allowedHeaders: ['Content-Type', 'credentials'],
@@ -46,7 +39,9 @@ import { courseRouter } from './routes/courseRoutes';
   app.get('/healthz', (req, res) => {
     res.send({ status: '✌️ ' });
   });
-  app.use(userRouter, courseRouter);
+  app.use(courseRouter);
+  app.use(chapterRouter);
+  app.use(userRouter);
   dotenv.config();
   app.use(errHandler);
 

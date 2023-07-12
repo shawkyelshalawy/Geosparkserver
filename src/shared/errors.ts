@@ -10,4 +10,8 @@ export enum ERRORS {
   NOT_AUTHORIZED = 'You are not authorized to perform this action',
   Course_Required_Failed = 'Course Request Failed',
   Course_Not_Found = 'Course_Not_Found',
+  Course_ID_MISSING = 'Course_ID_MISSING',
+  Fields_ARE_MISSING = 'Fields_ARE_MISSING',
+  Chapter_ID_MISSING = 'Chapter_ID_MISSING',
+  Chapter_Not_Found = 'Chapter_Not_Found',
 }
