@@ -21,3 +21,10 @@ export interface Chapter {
   description: string;
   courseId: string;
 }
+
+export interface Video {
+  id: string;
+  title: string;
+  url: string;
+  chapterId: string;
+}

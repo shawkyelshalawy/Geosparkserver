@@ -15,16 +15,10 @@ export const enforceJwtMiddleware: ExpressHandler<any, any> = async (
   }
   return next();
 };
-function checkIfTokenExists(req: any, res: any, next: any) {
-  const token = req.cookies.jwt;
-  if (!token) {
-    return res.status(401).send({ error: ERRORS.NOT_LOGGED_IN });
-  }
-  next();
-}
+
 export const protect = async (req: any, res: any, next: any) => {
   // 1) Getting token and check of it's there
-   let token;
+  let token;
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
@@ -36,7 +30,7 @@ export const protect = async (req: any, res: any, next: any) => {
   if (!token) {
     return res.status(401).send({ error: ERRORS.NOT_LOGGED_IN });
   }
-  //checkIfTokenExists(req, res, next);
+
   // 2) Verification token
   let decoded: JwtObject;
   try {

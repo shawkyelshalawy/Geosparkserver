@@ -118,3 +118,11 @@ export const deactivateUserHandler: ExpressHandlerWithParams<
     .status(200)
     .send({ message: 'user subscription deactivated successfully' });
 };
+
+//Check subscription status
+export const UserIsSubscribed = async (req: any, res: any, next: any) => {
+  if (req.user.subscribed) {
+    return next();
+  }
+  return res.status(401).send({ error: ERRORS.NOT_SUBSCRIBED });
+};

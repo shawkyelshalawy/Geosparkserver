@@ -9,6 +9,7 @@ import { errHandler } from './middleware/errorMiddleware';
 import { userRouter } from './routes/userRoutes';
 import { courseRouter } from './routes/courseRoutes';
 import { chapterRouter } from './routes/chapterRoutes';
+import { videoRouter } from './routes/videoRoutes';
 (async (logRequests = true) => {
   await initDb();
 
@@ -42,8 +43,9 @@ import { chapterRouter } from './routes/chapterRoutes';
   app.use(courseRouter);
   app.use(chapterRouter);
   app.use(userRouter);
+  app.use(videoRouter);
   dotenv.config();
-  app.use(errHandler);
+  //app.use(errHandler);
 
   const { ENV, PORT } = process.env;
   if (!ENV || !PORT) {

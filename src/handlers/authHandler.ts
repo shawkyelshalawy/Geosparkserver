@@ -42,12 +42,10 @@ export const signInHandler: ExpressHandler<
   if (!email || !password) {
     return res.sendStatus(400);
   }
-
   const existing = await db.getUserByEmail(email);
   if (!existing || existing.password !== hashPassword(password)) {
     return res.sendStatus(403);
   }
-
   createSendToken(existing, 200, res);
 };
 
@@ -93,22 +91,6 @@ export const signOutHandler: ExpressHandler<{}, {}> = (req, res) => {
   res.status(200).send({ status: 'success' });
 };
 
-// export const isLoggedIn: ExpressHandler<{}, {}> = async (req, res, next) => {
-//   if (req.cookies.jwt) {
-//     try {
-//       const decoded = await verifyJwt(req.cookies.jwt);
-//       const currentUser = await db.getUserById(decoded.userId);
-//       if (!currentUser) {
-//         return next();
-//       }
-//       res.locals.user = currentUser;
-//       return next();
-//     } catch (e) {
-//       return next();
-//     }
-//   }
-//   next();
-// };
 function hashPassword(password: string): string {
   return crypto
     .pbkdf2Sync(password, process.env.PASSWORD_SALT!, 42, 64, 'sha512')

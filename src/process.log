@@ -1,1 +1,8 @@
-{"level":30,"time":1689170925913,"msg":"Listening on port 3001 in production environment"}
+{"level":30,"time":1689429157478,"msg":"Listening on port 3001 in production environment"}
+{"level":30,"time":1689429178108,"method":"POST","path":"/signup","body":{"email":"fariedo@gmail.com","password":"[Redacted]","firstName":"shawky","lastName":"faried"}}
+{"level":30,"time":1689429189971,"method":"GET","path":"/videos/1f1c2cd8-36bb-4d1f-8a7b-81bbfa74f9de"}
+{"level":30,"time":1689429196403,"method":"GET","path":"/chapters/1a9243f5-8e10-4900-a191-efd2b2bb70aa/videos"}
+{"level":30,"time":1689429201833,"method":"POST","path":"/chapters/1a9243f5-8e10-4900-a191-efd2b2bb70aa/videos","body":{"title":"4rth lesson Geology","url":"youtube.com"}}
+{"level":30,"time":1689429209452,"method":"GET","path":"/chapters/1a9243f5-8e10-4900-a191-efd2b2bb70aa"}
+{"level":30,"time":1689429212880,"method":"GET","path":"/courses/3cbe7c53-7c30-4841-8802-2689c9a62cb1/chapters"}
+{"level":30,"time":1689429218506,"method":"GET","path":"/Allusers"}

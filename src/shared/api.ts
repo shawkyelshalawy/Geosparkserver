@@ -1,5 +1,4 @@
-import { RequestHandler } from 'express';
-import { Chapter, Course, User } from './types';
+import { Chapter, Course, User, Video } from './types';
 
 export type SignUpRequest = Pick<
   User,
@@ -98,5 +97,31 @@ export interface DeleteChapterRequest {
   id: string;
 }
 export type DeleteChapterResponse = {
+  message: string;
+};
+
+export type CreateVideoRequest = Pick<
+  Video,
+  'id' | 'title' | 'url' | 'chapterId'
+>;
+export type CreateVideoResponse = Pick<Video, 'id' | 'title' | 'url'>;
+
+export interface GetVideoRequest {
+  id: string;
+}
+export type GetVideoResponse = Pick<Video, 'title' | 'url'>;
+
+export type listVideoRequest = {
+  chapterId: string;
+};
+
+export type listVideoResponse = {
+  videos: Pick<Video, 'title' | 'url'>[];
+};
+
+export interface DeleteVideoRequest {
+  id: string;
+}
+export type DeleteVideoResponse = {
   message: string;
 };
