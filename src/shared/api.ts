@@ -1,4 +1,4 @@
-import { Chapter, Course, User, Video } from './types';
+import { Chapter, Course, Exam, Question, User, Video } from './types';
 
 export type SignUpRequest = Pick<
   User,
@@ -83,7 +83,7 @@ export type CreateChapterResponse = Pick<
 export interface GetChapterRequest {
   id: string;
 }
-export type GetChapterResponse = Pick<Chapter, 'title'>;
+export type GetChapterResponse = Pick<Chapter, 'title' | 'courseId'>;
 
 export type listChapterRequest = {
   courseId: string;
@@ -109,7 +109,7 @@ export type CreateVideoResponse = Pick<Video, 'id' | 'title' | 'url'>;
 export interface GetVideoRequest {
   id: string;
 }
-export type GetVideoResponse = Pick<Video, 'title' | 'url'>;
+export type GetVideoResponse = Pick<Video, 'title' | 'url' | 'id'>;
 
 export type listVideoRequest = {
   chapterId: string;
@@ -125,3 +125,44 @@ export interface DeleteVideoRequest {
 export type DeleteVideoResponse = {
   message: string;
 };
+
+export type CreateExamRequest = Pick<
+  Exam,
+  'id' | 'title' | 'courseId' | 'chapterId'
+>;
+export type CreateExamResponse = Pick<Exam, 'id' | 'title'>;
+
+export interface GetExamRequest {
+  examId: string;
+}
+export type GetExamResponse = Pick<Exam, 'id' | 'title'>;
+
+export type AddQuestionRequest = Pick<
+  Question,
+  | 'id'
+  | 'question'
+  | 'correctAnswer'
+  | 'examId'
+>;
+
+export type AddQuestionResponse = Pick<Question, 'question'>;
+
+export interface getQuestionRequest {
+  questionId: string;
+}
+export type getQuestionResponse = Pick<
+  Question,
+  | 'id'
+  | 'question'
+  | 'correctAnswer'
+  | 'examId'
+>;
+
+
+export interface checkAnswerRequest {
+    questionId: string;
+    answer: string;
+}
+export interface checkAnswerResponse {
+    isCorrect: boolean;
+}

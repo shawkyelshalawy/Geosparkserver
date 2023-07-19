@@ -28,3 +28,17 @@ export interface Video {
   url: string;
   chapterId: string;
 }
+
+export interface Exam {
+  id: string;
+  title: string;
+  courseId: string;
+  chapterId: string;
+}
+
+export interface Question {
+  id: string;
+  question: string;
+  correctAnswer: string;
+  examId: string;
+}

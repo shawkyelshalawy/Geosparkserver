@@ -17,4 +17,8 @@ export enum ERRORS {
   Video_ID_MISSING = 'Video ID MISSING',
   Video_Not_Found = 'Video Not Found',
   NOT_SUBSCRIBED = 'You are not Subscribed',
+  Exam_ID_MISSING = 'Exam ID Missing',
+  Exam_Not_Found = 'Exam Not found',
+  Question_ID_MISSING = 'Question ID MISSING',
+  Question_Not_Found = 'Question Not Found',
 }

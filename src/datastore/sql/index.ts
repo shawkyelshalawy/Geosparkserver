@@ -1,4 +1,11 @@
-import { Chapter, Course, User, Video } from '../../shared/types';
+import {
+  Chapter,
+  Course,
+  Exam,
+  Question,
+  User,
+  Video,
+} from '../../shared/types';
 import path from 'path';
 import { Database, open as sqliteOpen } from 'sqlite';
 import sqlite3 from 'sqlite3';
@@ -115,5 +122,29 @@ export class SqlDataStore implements Datastore {
   }
   async DeleteVideo(id: string): Promise<void> {
     await this.db.run(`DELETE FROM videos WHERE id = ?`, id);
+  }
+  async CreateExam(exam: Exam): Promise<void> {
+    await this.db.run(
+      'INSERT INTO exams (id, title, courseId, chapterId) VALUES (?,?,?,?)',
+      exam.id,
+      exam.title,
+      exam.courseId,
+      exam.chapterId
+    );
+  }
+  async getExamById(id: string): Promise<Exam | undefined> {
+    return this.db.get<Exam>(`SELECT * FROM exams WHERE id = ?`, id);
+  }
+  async AddQuestion(question: Question): Promise<void> {
+    await this.db.run(
+      'INSERT INTO questions(id , question ,correctAnswer , examId) VALUES (?,?,?,?)',
+      question.id,
+      question.question,
+      question.correctAnswer,
+      question.examId
+    );
+  }
+  async getQuestionById(id: string): Promise<Question | undefined> {
+    return this.db.get<Question>(`SELECT * FROM questions WHERE id = ?`, id);
   }
 }
