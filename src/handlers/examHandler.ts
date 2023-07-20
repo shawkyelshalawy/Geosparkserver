@@ -5,6 +5,10 @@ import {
   CreateExamResponse,
   GetExamRequest,
   GetExamResponse,
+  deleteExamRequest,
+  deleteExamResponse,
+  listExamsRequest,
+  listExamsResponse,
 } from '../shared/api';
 import { ExpressHandlerWithParams } from '../types';
 import { ERRORS } from '../shared/errors';
@@ -43,4 +47,33 @@ export const getExamByIdHandler: ExpressHandlerWithParams<
   const exam = await db.getExamById(req.params.examId);
   if (!exam) return res.status(404).send({ error: ERRORS.Exam_Not_Found });
   return res.status(200).send(exam);
+};
+
+export const deleteExamHandler: ExpressHandlerWithParams<
+  { examId: string },
+  deleteExamRequest,
+  deleteExamResponse
+> = async (req, res) => {
+  if (!req.params.examId)
+    return res.status(400).send({ error: ERRORS.Exam_ID_MISSING });
+  const exam = await db.getExamById(req.params.examId);
+  if (!exam) return res.status(404).send({ error: ERRORS.Exam_Not_Found });
+  await db.deleteExam(req.params.examId);
+  return res.status(200).send({ message: 'Exam deleted successfully' });
+};
+export const getAllExamsHandler: ExpressHandlerWithParams<
+  { chapterId: string },
+  listExamsRequest,
+  listExamsResponse
+> = async (req, res) => {
+  if (!req.params.chapterId)
+    return res.status(400).send({ error: ERRORS.Chapter_ID_MISSING });
+  const chapter = await db.getChapterById(req.params.chapterId);
+  if (!chapter)
+    return res.status(404).send({ error: ERRORS.Chapter_Not_Found });
+  const exams = await db.getAllexams();
+  const examsInChapter = exams.filter(
+    (exam) => exam.chapterId === req.params.chapterId
+  );
+  return res.status(200).send({ exams: examsInChapter });
 };

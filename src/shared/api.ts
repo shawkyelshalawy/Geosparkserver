@@ -139,10 +139,7 @@ export type GetExamResponse = Pick<Exam, 'id' | 'title'>;
 
 export type AddQuestionRequest = Pick<
   Question,
-  | 'id'
-  | 'question'
-  | 'correctAnswer'
-  | 'examId'
+  'id' | 'question' | 'correctAnswer' | 'examId'
 >;
 
 export type AddQuestionResponse = Pick<Question, 'question'>;
@@ -152,17 +149,25 @@ export interface getQuestionRequest {
 }
 export type getQuestionResponse = Pick<
   Question,
-  | 'id'
-  | 'question'
-  | 'correctAnswer'
-  | 'examId'
+  'id' | 'question' | 'correctAnswer' | 'examId'
 >;
 
-
 export interface checkAnswerRequest {
-    questionId: string;
-    answer: string;
+  questionId: string;
+  answer: string;
 }
 export interface checkAnswerResponse {
-    isCorrect: boolean;
+  isCorrect: boolean;
 }
+export interface deleteExamRequest {
+  examId: string;
+}
+export interface deleteExamResponse {
+  message: string;
+}
+export type listExamsRequest = {
+  chapterId: string;
+};
+export type listExamsResponse = {
+  exams: Pick<Exam, 'id' | 'title'>[];
+};

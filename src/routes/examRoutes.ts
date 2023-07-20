@@ -1,6 +1,11 @@
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
-import { CreatExamHandler, getExamByIdHandler } from '../handlers/examHandler';
+import {
+  CreatExamHandler,
+  deleteExamHandler,
+  getAllExamsHandler,
+  getExamByIdHandler,
+} from '../handlers/examHandler';
 import { UserIsSubscribed } from '../handlers/userHandler';
 import { protect } from '../middleware/authMiddleware';
 import { userIsAdmin } from '../handlers/authHandler';
@@ -14,3 +19,11 @@ examRouter
 examRouter
   .route('/exams/:examId')
   .get(protect, UserIsSubscribed, asyncHandler(getExamByIdHandler));
+
+examRouter
+  .route('/chapters/:chapterId/exams')
+  .get(protect, UserIsSubscribed, asyncHandler(getAllExamsHandler));
+
+examRouter
+  .route('/exams/:examId')
+  .delete(protect, userIsAdmin, asyncHandler(deleteExamHandler));

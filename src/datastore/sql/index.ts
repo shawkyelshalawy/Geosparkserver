@@ -135,6 +135,12 @@ export class SqlDataStore implements Datastore {
   async getExamById(id: string): Promise<Exam | undefined> {
     return this.db.get<Exam>(`SELECT * FROM exams WHERE id = ?`, id);
   }
+  async getAllexams(): Promise<Exam[]> {
+    return this.db.all<Exam[]>(`SELECT * FROM exams`);
+  }
+  async deleteExam(id: string): Promise<void> {
+    await this.db.run(`DELETE FROM exams WHERE id = ?`, id);
+  }
   async AddQuestion(question: Question): Promise<void> {
     await this.db.run(
       'INSERT INTO questions(id , question ,correctAnswer , examId) VALUES (?,?,?,?)',
