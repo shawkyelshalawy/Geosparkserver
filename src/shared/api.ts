@@ -116,7 +116,7 @@ export type listVideoRequest = {
 };
 
 export type listVideoResponse = {
-  videos: Pick<Video, 'title' | 'url'>[];
+  videos: Pick<Video, 'title' | 'url' | 'id'>[];
 };
 
 export interface DeleteVideoRequest {

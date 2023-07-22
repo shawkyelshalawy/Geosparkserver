@@ -61,6 +61,7 @@ export const getVideosForChapter: ExpressHandlerWithParams<
     videos: videos.map((video) => ({
       title: video.title,
       url: video.url,
+      id: video.id,
     })),
   });
 };
