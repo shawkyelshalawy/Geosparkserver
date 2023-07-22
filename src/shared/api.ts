@@ -159,6 +159,12 @@ export interface checkAnswerRequest {
 export interface checkAnswerResponse {
   isCorrect: boolean;
 }
+export type listExamQuestionsRequest = {
+  examId: string;
+};
+export type listExamQuestionsResponse = {
+  questions: Pick<Question, 'id' | 'question' | 'correctAnswer'>[];
+};
 export interface deleteExamRequest {
   examId: string;
 }

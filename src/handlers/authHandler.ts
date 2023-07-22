@@ -96,3 +96,16 @@ function hashPassword(password: string): string {
     .pbkdf2Sync(password, process.env.PASSWORD_SALT!, 42, 64, 'sha512')
     .toString('hex');
 }
+
+// function check duplicate email
+export const checkDuplicateEmail = async (
+  req: any,
+  res: any,
+  next: any
+): Promise<void> => {
+  const user = await db.getUserByEmail(req.body.email);
+  if (user) {
+    return res.status(400).send({ error: ERRORS.DUPLICATE_EMAIL });
+  }
+  next();
+};

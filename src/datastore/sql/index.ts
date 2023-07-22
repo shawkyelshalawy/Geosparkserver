@@ -153,4 +153,11 @@ export class SqlDataStore implements Datastore {
   async getQuestionById(id: string): Promise<Question | undefined> {
     return this.db.get<Question>(`SELECT * FROM questions WHERE id = ?`, id);
   }
+
+  async getExamQuestions(examId: string): Promise<Question[]> {
+    return this.db.all<Question[]>(
+      `SELECT * FROM questions WHERE examId = ?`,
+      examId
+    );
+  }
 }

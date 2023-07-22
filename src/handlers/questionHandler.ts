@@ -2,9 +2,13 @@ import crypto from 'crypto';
 import { db } from '../datastore';
 import {
   AddQuestionRequest,
-  AddQuestionResponse, checkAnswerRequest, checkAnswerResponse,
+  AddQuestionResponse,
+  checkAnswerRequest,
+  checkAnswerResponse,
   getQuestionRequest,
   getQuestionResponse,
+  listExamQuestionsRequest,
+  listExamQuestionsResponse,
 } from '../shared/api';
 import { ExpressHandlerWithParams } from '../types';
 import { Question } from '../shared/types';
@@ -18,10 +22,7 @@ export const AddQuestionHandler: ExpressHandlerWithParams<
   if (!req.params.examId)
     return res.status(400).send({ error: ERRORS.Exam_ID_MISSING });
 
-  if (
-    !req.body.question ||
-    !req.body.correctAnswer
-  )
+  if (!req.body.question || !req.body.correctAnswer)
     return res.status(400).send({ error: ERRORS.Fields_ARE_MISSING });
   const exam = await db.getExamById(req.params.examId);
   if (!exam) return res.status(404).send({ error: ERRORS.Exam_Not_Found });
@@ -55,12 +56,25 @@ export const checkAnswerHandler: ExpressHandlerWithParams<
   checkAnswerResponse
 > = async (req, res) => {
   if (!req.params.questionId)
-    return res.status(400).send({error: ERRORS.Question_ID_MISSING});
+    return res.status(400).send({ error: ERRORS.Question_ID_MISSING });
   const question = await db.getQuestionById(req.params.questionId);
   if (!question)
-    return res.status(404).send({error: ERRORS.Question_Not_Found});
+    return res.status(404).send({ error: ERRORS.Question_Not_Found });
   if (req.body.answer === question.correctAnswer) {
-    return res.status(200).send({isCorrect: true});
+    return res.status(200).send({ isCorrect: true });
   }
-  return res.status(200).send({isCorrect: false});
+  return res.status(200).send({ isCorrect: false });
+};
+
+export const listExamQuestionsHandler: ExpressHandlerWithParams<
+  { examId: string },
+  listExamQuestionsRequest,
+  listExamQuestionsResponse
+> = async (req, res) => {
+  if (!req.params.examId)
+    return res.status(400).send({ error: ERRORS.Exam_ID_MISSING });
+  const questions = await db.getExamQuestions(req.params.examId);
+  if (!questions)
+    return res.status(404).send({ error: ERRORS.Question_Not_Found });
+  return res.status(200).send({ questions });
 };
