@@ -2,7 +2,7 @@ import {
   Chapter,
   Course,
   Exam,
-  Question,
+  Question, Result,
   User,
   Video,
 } from '../../shared/types';
@@ -143,10 +143,13 @@ export class SqlDataStore implements Datastore {
   }
   async AddQuestion(question: Question): Promise<void> {
     await this.db.run(
-      'INSERT INTO questions(id , question ,correctAnswer , examId) VALUES (?,?,?,?)',
+      'INSERT INTO questions(id , question ,correctAnswer ,option1 , option2 , option3, examId) VALUES (?,?,?,?,?,?,?)',
       question.id,
       question.question,
       question.correctAnswer,
+      question.option1,
+      question.option2,
+      question.option3,
       question.examId
     );
   }
@@ -157,6 +160,49 @@ export class SqlDataStore implements Datastore {
   async getExamQuestions(examId: string): Promise<Question[]> {
     return this.db.all<Question[]>(
       `SELECT * FROM questions WHERE examId = ?`,
+      examId
+    );
+  }
+  // insert result
+  async insertResult(result: Result): Promise<void> {
+    await this.db.run(
+      'INSERT INTO results(id , score , userId , examId) VALUES (?,?,?,?)',
+      result.id,
+      result.score,
+      result.userId,
+      result.examId
+    );
+  }
+  getResultsForaUser(userId: string): Promise<Result[]> {
+    return this.db.all<Result[]>(
+      `SELECT
+         results.id AS result_id,
+         exams.id AS exam_id,
+         exams.title AS exam_title,
+         users.firstName || ' ' || users.lastName AS user_name,
+         results.score AS user_score
+       FROM
+         results
+       JOIN
+         exams ON results.examId = exams.id
+       JOIN
+         users ON results.userId = users.id
+       WHERE results.userId = ?`,
+      userId
+    );
+  }
+  getResultForExam(examId: string): Promise<Result[]> {
+    return this.db.all<Result[]>(
+      `SELECT
+         results.id AS result_id,
+         users.id AS user_id,
+         users.firstName || ' ' || users.lastName AS user_name,
+         results.score AS user_score
+       FROM
+         results
+       JOIN
+         users ON results.userId = users.id
+       WHERE results.examId = ?`,
       examId
     );
   }

@@ -5,6 +5,7 @@ import { ExamDao } from './dao/examDao';
 import { questionsDao } from './dao/questionsDao';
 import { VideoDao } from './dao/videoDao';
 import { SqlDataStore } from './sql';
+import {ResultsDao} from "./dao/ResultsDao";
 
 export interface Datastore
   extends UserDao,
@@ -12,7 +13,8 @@ export interface Datastore
     ChapterDao,
     VideoDao,
     ExamDao,
-    questionsDao {}
+    questionsDao ,
+ResultsDao{}
 
 export let db: Datastore;
 

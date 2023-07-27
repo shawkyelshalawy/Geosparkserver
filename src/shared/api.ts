@@ -139,17 +139,23 @@ export type GetExamResponse = Pick<Exam, 'id' | 'title'>;
 
 export type AddQuestionRequest = Pick<
   Question,
-  'id' | 'question' | 'correctAnswer' | 'examId'
+  | 'id'
+  | 'question'
+  | 'correctAnswer'
+  | 'examId'
+  | 'option1'
+  | 'option2'
+  | 'option3'
 >;
 
-export type AddQuestionResponse = Pick<Question, 'question'>;
+export type AddQuestionResponse = Pick<Question, 'question' | 'id'>;
 
 export interface getQuestionRequest {
   questionId: string;
 }
 export type getQuestionResponse = Pick<
   Question,
-  'id' | 'question' | 'correctAnswer' | 'examId'
+  'question' | 'option1' | 'option2' | 'option3'
 >;
 
 export interface checkAnswerRequest {
@@ -163,7 +169,10 @@ export type listExamQuestionsRequest = {
   examId: string;
 };
 export type listExamQuestionsResponse = {
-  questions: Pick<Question, 'id' | 'question' | 'correctAnswer'>[];
+  questions: Pick<
+    Question,
+    'id' | 'question' | 'option1' | 'option2' | 'option3'
+  >[];
 };
 export interface deleteExamRequest {
   examId: string;
@@ -177,3 +186,24 @@ export type listExamsRequest = {
 export type listExamsResponse = {
   exams: Pick<Exam, 'id' | 'title'>[];
 };
+// add result
+export type addResultRequest = {
+    examId: string;
+    userId: string;
+    score: number;
+};
+
+export type addResultResponse = {
+    message: string;
+}
+export type listUserResultsRequest = {
+    userId: string;
+};
+export type listUserResultsResponse = {
+    results: {
+        resultId: string;
+        examId: string;
+        score: number;
+        examTitle: string;
+    }[];
+}

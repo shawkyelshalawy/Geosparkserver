@@ -1,4 +1,1 @@
-{"level":30,"time":1690038596607,"msg":"Listening on port 3001 in production environment"}
-{"level":30,"time":1690038598928,"method":"GET","path":"/exams/a7641d71-903e-40ad-b6d2-b1bf7ea8a43a/questions"}
-{"level":30,"time":1690038623798,"method":"GET","path":"/exams/a7641d71-903e-40ad-b6d2-b1bf7ea8a43a/questions"}
-{"level":30,"time":1690038682593,"method":"GET","path":"/chapters/c848085b-a4da-46ae-ab51-8046abc5124d/exams"}
+{"level":30,"time":1690461415705,"msg":"Listening on port 3001 in production environment"}

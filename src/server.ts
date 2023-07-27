@@ -12,6 +12,7 @@ import { chapterRouter } from './routes/chapterRoutes';
 import { videoRouter } from './routes/videoRoutes';
 import { examRouter } from './routes/examRoutes';
 import { questionRouter } from './routes/questionRoutes';
+import {resultsRouter} from "./routes/resultRoutes";
 (async (logRequests = true) => {
   await initDb();
 
@@ -48,6 +49,7 @@ import { questionRouter } from './routes/questionRoutes';
   app.use(videoRouter);
   app.use(examRouter);
   app.use(questionRouter);
+  app.use(resultsRouter);
   dotenv.config();
   //app.use(errHandler);
 

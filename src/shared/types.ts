@@ -40,5 +40,15 @@ export interface Question {
   id: string;
   question: string;
   correctAnswer: string;
+  option1: string;
+  option2: string;
+  option3: string;
   examId: string;
+}
+
+export interface Result {
+    id: string;
+    score: number;
+    userId: string;
+    examId: string;
 }
