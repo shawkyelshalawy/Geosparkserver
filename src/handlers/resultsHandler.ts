@@ -51,3 +51,5 @@ export const getExamResultsHandler: ExpressHandlerWithParams<
     if (!results) return res.status(404).send({ error: ERRORS.Exam_Not_Found});
     res.status(200).send(results);
 }
+
+// make the user can't take the exam only once

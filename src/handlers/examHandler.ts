@@ -77,3 +77,17 @@ export const getAllExamsHandler: ExpressHandlerWithParams<
   );
   return res.status(200).send({ exams: examsInChapter });
 };
+
+// function that make sure that the user can't take the exam more than once
+
+
+export const  CheckElgiablityToTakeExam = async (req: any, res: any, next: any)=> {
+  const examId = req.params.examId;
+  const userId = res.locals.userId;
+  const result = await db.getResultsForaUser(userId);
+  const takenExam = result.filter((exam: any) => exam.exam_id === examId);
+    if (takenExam.length > 0) {
+        return res.status(401).send({ error: ERRORS.Exam_Taken });
+    }
+    return next();
+}

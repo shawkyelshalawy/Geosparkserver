@@ -22,4 +22,5 @@ export enum ERRORS {
   Question_ID_MISSING = 'Question ID MISSING',
   Question_Not_Found = 'Question Not Found',
   User_ID_MISSING = " Missing user id",
+  Exam_Taken = "Exam already taken",
 }

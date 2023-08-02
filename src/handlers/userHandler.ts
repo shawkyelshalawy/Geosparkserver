@@ -124,5 +124,5 @@ export const UserIsSubscribed = async (req: any, res: any, next: any) => {
   if (req.user.subscribed) {
     return next();
   }
-  return res.status(401).send({ error: ERRORS.NOT_SUBSCRIBED });
+  return res.status(403).send({ error: ERRORS.NOT_SUBSCRIBED });
 };

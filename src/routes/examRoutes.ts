@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
 import {
+  CheckElgiablityToTakeExam,
   CreatExamHandler,
   deleteExamHandler,
   getAllExamsHandler,
@@ -18,7 +19,7 @@ examRouter
 
 examRouter
   .route('/exams/:examId')
-  .get(protect, UserIsSubscribed, asyncHandler(getExamByIdHandler));
+  .get(protect, UserIsSubscribed ,CheckElgiablityToTakeExam,  asyncHandler(getExamByIdHandler));
 
 examRouter
   .route('/chapters/:chapterId/exams')

@@ -64,7 +64,8 @@ export const getQuestionByIdHandler: ExpressHandlerWithParams<
     option3: question.option3
   });
 };
-// check if answer is correct or not
+// check if answer is correct or not and calculate score
+
 export const checkAnswerHandler: ExpressHandlerWithParams<
   { questionId: string },
   checkAnswerRequest,
@@ -81,6 +82,25 @@ export const checkAnswerHandler: ExpressHandlerWithParams<
   return res.status(200).send({ isCorrect: false });
 };
 
+//calculate score
+// export const calculateScoreHandler: ExpressHandlerWithParams<
+//   { examId: string },
+//   calculateScoreRequest,
+//   calculateScoreResponse
+// > = async (req, res) => {
+//   if (!req.params.examId)
+//     return res.status(400).send({ error: ERRORS.Exam_ID_MISSING });
+//   const exam = await db.getExamById(req.params.examId);
+//   if (!exam) return res.status(404).send({ error: ERRORS.Exam_Not_Found });
+//   const questions = await db.getExamQuestions(req.params.examId);
+//   if (!questions)
+//     return res.status(404).send({ error: ERRORS.Question_Not_Found });
+//   let score = 0;
+//   for (let i = 0; i < questions.length; i++) {
+//     if (req.body.answer === questions[i].correctAnswer) {
+//       score++;
+//     }
+//   }
 
 export const listExamQuestionsHandler: ExpressHandlerWithParams<
   { examId: string },
