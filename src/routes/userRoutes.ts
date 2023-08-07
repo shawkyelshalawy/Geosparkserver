@@ -11,6 +11,7 @@ import {
   deactivateUserHandler,
   deleteUserHandler,
   getCurrentUser,
+  getUserByIdHandler,
   listUsersHandler,
 } from '../handlers/userHandler';
 import { protect } from '../middleware/authMiddleware';
@@ -25,6 +26,9 @@ userRouter
   .route('/Allusers')
   .get(protect, userIsAdmin, asyncHandler(listUsersHandler));
 
+userRouter
+  .route('/users/:id')
+  .get(protect, userIsAdmin, asyncHandler(getUserByIdHandler));
 userRouter
   .route('/activate/:id')
   .patch(protect, userIsAdmin, asyncHandler(activateUserHandler));

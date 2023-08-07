@@ -2,7 +2,8 @@ import {
   Chapter,
   Course,
   Exam,
-  Question, Result,
+  Question,
+  Result,
   User,
   Video,
 } from '../../shared/types';
@@ -44,6 +45,7 @@ export class SqlDataStore implements Datastore {
   async deleteUser(id: string): Promise<void> {
     await this.db.run(`DELETE FROM users WHERE id = ?`, id);
   }
+
   getUserById(id: string): Promise<User | undefined> {
     return this.db.get<User>(`SELECT * FROM users WHERE id = ?`, id);
   }
@@ -191,6 +193,7 @@ export class SqlDataStore implements Datastore {
       userId
     );
   }
+
   getResultForExam(examId: string): Promise<Result[]> {
     return this.db.all<Result[]>(
       `SELECT

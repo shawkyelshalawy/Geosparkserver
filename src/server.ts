@@ -12,7 +12,8 @@ import { chapterRouter } from './routes/chapterRoutes';
 import { videoRouter } from './routes/videoRoutes';
 import { examRouter } from './routes/examRoutes';
 import { questionRouter } from './routes/questionRoutes';
-import {resultsRouter} from "./routes/resultRoutes";
+import { resultsRouter } from './routes/resultRoutes';
+import bodyParser from 'body-parser';
 (async (logRequests = true) => {
   await initDb();
 
@@ -21,7 +22,8 @@ import {resultsRouter} from "./routes/resultRoutes";
 
   // middlewares for parsing JSON payloads and opening up cors policy
   app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
+  app.use(bodyParser.json({ limit: '5mb' }));
+  app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 
   const whitelist = [
     'http://localhost:3000',
