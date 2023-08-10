@@ -95,6 +95,8 @@ export const signOutHandler: ExpressHandler<{}, {}> = (req, res) => {
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() - 10 * 1000),
     httpOnly: true,
+    sameSite: 'none',
+    secure: true,
   });
   // clear the cookie and it's content
   // res.clearCookie('jwt' ,{
