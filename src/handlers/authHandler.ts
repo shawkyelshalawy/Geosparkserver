@@ -92,14 +92,14 @@ export const signUpHandler: ExpressHandler<
 //     res.status(200).send({ status: 'success' });
 //   }
 export const signOutHandler: ExpressHandler<{}, {}> = (req, res) => {
-  // res.cookie('jwt', 'loggedout', {
-  //   expires: new Date(Date.now() +  1000),
-  //   httpOnly: true,
-  // });
-  // clear the cookie and it's content
-  res.clearCookie('jwt' ,{
-      httpOnly: true,
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() - 10 * 1000),
+    httpOnly: true,
   });
+  // clear the cookie and it's content
+  // res.clearCookie('jwt' ,{
+  //     httpOnly: true,
+  // });
   res.status(200).send({ status: 'success' });
 };
 
