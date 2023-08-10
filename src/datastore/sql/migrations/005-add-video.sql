@@ -1,4 +1,4 @@
-CREATE TABLE videos (
+CREATE TABLE  IF NOT EXISTS videos (
   id        VARCHAR NOT NULL PRIMARY KEY,
   title     VARCHAR NOT NULL,
   url       VARCHAR NOT NULL,

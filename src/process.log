@@ -1,1 +1,10 @@
-{"level":30,"time":1691229497136,"msg":"Listening on port 3001 in production environment"}
+{"level":30,"time":1691678859993,"msg":"Listening on port 3001 in production environment"}
+{"level":30,"time":1691678879201,"method":"POST","path":"/login","body":{"email":"shawkyfaried@gmail.com","password":"[Redacted]"}}
+{"level":30,"time":1691678890959,"method":"GET","path":"/courses"}
+{"level":30,"time":1691678900165,"method":"GET","path":"/logout"}
+{"level":30,"time":1691678909868,"method":"GET","path":"/courses"}
+{"level":30,"time":1691678913582,"method":"GET","path":"/courses"}
+{"level":30,"time":1691678972827,"method":"POST","path":"/login","body":{"email":"shawkyfaried@gmail.com","password":"[Redacted]"}}
+{"level":30,"time":1691679003555,"method":"GET","path":"/logout"}
+{"level":30,"time":1691679017358,"method":"GET","path":"/chapters/1a9243f5-8e10-4900-a191-efd2b2bb70aa/videos"}
+{"level":30,"time":1691679027963,"method":"GET","path":"/chapters/c848085b-a4da-46ae-ab51-8046abc5124d/exams"}

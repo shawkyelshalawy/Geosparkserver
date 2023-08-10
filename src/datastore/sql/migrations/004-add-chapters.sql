@@ -1,4 +1,4 @@
-CREATE TABLE chapters (
+CREATE TABLE  IF NOT EXISTS chapters (
   id      VARCHAR NOT NULL PRIMARY KEY,
   title   VARCHAR NOT NULL,
   description VARCHAR NOT NULL,
@@ -6,4 +6,4 @@ CREATE TABLE chapters (
   FOREIGN KEY (courseId) REFERENCES courses(id)
 );
 
-CREATE INDEX chapters_Id_idx ON chapters(id);
+CREATE INDEX IF NOT EXISTS chapters_Id_idx ON chapters(id);

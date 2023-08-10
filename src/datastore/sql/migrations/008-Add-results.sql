@@ -1,4 +1,4 @@
-CREATE table results (
+CREATE table IF NOT EXISTS results (
   id VARCHAR NOT NULL PRIMARY KEY,
   score VARCHAR NOT NULL,
   examId VARCHAR NOT NULL,

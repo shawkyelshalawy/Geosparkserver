@@ -1,4 +1,4 @@
-CREATE TABLE questions (
+CREATE TABLE  IF NOT EXISTS questions (
       id VARCHAR NOT NULL PRIMARY KEY,
       question VARCHAR NOT NULL,
       correctAnswer VARCHAR NOT NULL,

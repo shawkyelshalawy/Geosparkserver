@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE  IF NOT EXISTS  users (
   id        VARCHAR NOT NULL PRIMARY KEY,
   firstName VARCHAR NOT NULL,
   lastName  VARCHAR NOT NULL,
@@ -9,5 +9,5 @@ CREATE TABLE users (
 );
 
 
-CREATE INDEX users_email_idx ON users (email);
-CREATE INDEX users_id_idx ON users (id);
+CREATE INDEX  IF NOT EXISTS users_email_idx ON users (email);
+CREATE INDEX  IF NOT EXISTS users_id_idx ON users (id);
