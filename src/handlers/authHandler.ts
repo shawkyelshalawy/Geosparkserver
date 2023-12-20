@@ -98,10 +98,7 @@ export const signOutHandler: ExpressHandler<{}, {}> = (req, res) => {
     sameSite: 'none',
     secure: true,
   });
-  // clear the cookie and it's content
-  // res.clearCookie('jwt' ,{
-  //     httpOnly: true,
-  // });
+
   res.status(200).send({ status: 'success' });
 };
 
